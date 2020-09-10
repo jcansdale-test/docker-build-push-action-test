@@ -62,3 +62,4 @@ jobs:
       -
         name: Push
         run: docker push ${{ env.IMAGE }}
+
