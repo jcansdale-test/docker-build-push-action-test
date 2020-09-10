@@ -3,7 +3,7 @@ on:
     branches: master
 
 jobs:
-  build-and-push:
+  docker-build-push-action:
     strategy:
       fail-fast: false
       matrix:
@@ -38,3 +38,27 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ env.IMAGE }}
+
+  docker-build-push:
+    strategy:
+      fail-fast: false
+      matrix:
+        registry: [ghcr.io, docker.pkg.github.com]
+    runs-on: ubuntu-latest
+    env:
+      IMAGE: ${{ matrix.registry }}/${{ github.repository_owner }}/docker-build-push-action-test/app2:latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Login to DockerHub
+        run: docker login ${{ matrix.registry }} -u token -p ${{ secrets.GHCR_TOKEN }}
+      -
+         run: echo "FROM alpine" > Dockerfile
+      -
+        name: Build
+        run: docker build . -t ${{ env.IMAGE }}
+      -
+        name: Push
+        run: docker push ${{ env.IMAGE }}
