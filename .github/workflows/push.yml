@@ -24,7 +24,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: token
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ secrets.PACKAGES_TOKEN }}
       -
          run: echo "FROM alpine" > Dockerfile
       -
