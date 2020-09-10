@@ -10,7 +10,7 @@ jobs:
         registry: [ghcr.io, docker.pkg.github.com]
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/app:latest
+      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/app-test:latest
     steps:
       -
         name: Checkout
