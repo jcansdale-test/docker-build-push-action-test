@@ -10,7 +10,7 @@ jobs:
         registry: [ghcr.io, docker.pkg.github.com]
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ matrix.registry }}/mutantdesign/docker-build-push-action-test/app:latest
+      IMAGE: ${{ matrix.registry }}/mutantdesign/docker-build-push-action-test/app2:latest
     steps:
       -
         name: Checkout
@@ -46,7 +46,7 @@ jobs:
         registry: [ghcr.io, docker.pkg.github.com]
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ matrix.registry }}/mutantdesign/docker-build-push-action-test/app:latest
+      IMAGE: ${{ matrix.registry }}/mutantdesign/docker-build-push-action-test/app3:latest
     steps:
       -
         name: Checkout
