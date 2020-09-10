@@ -6,8 +6,8 @@ jobs:
   path-context:
     runs-on: ubuntu-latest
     env:
-      REGISTRY: ghcr.io
-      IMAGE: ${{ github.repository }}/app:latest
+      REGISTRY: docker.pkg.github.com
+      IMAGE: ${{ github.repository }}/docker-build-push-action-test:latest
     steps:
       -
         name: Checkout
