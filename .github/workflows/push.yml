@@ -27,7 +27,7 @@ jobs:
         with:
           registry: ${{ matrix.registry }}
           username: token
-          password: ${{ secrets.PACKAGES_TOKEN }}
+          password: ${{ secrets.GHCR_TOKEN }}
       -
          run: echo "FROM alpine" > Dockerfile
       -
