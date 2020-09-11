@@ -6,11 +6,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        platforms: ["linux/amd64", "linux/amd64, linux/arm64"]
         registry: [ghcr.io]
         pre-push: ['true', 'false']
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}-${{ github.sha }}
+      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ strategy.job-index }}-${{ github.sha }}
     steps:
       -
         name: Checkout
@@ -45,4 +46,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ env.IMAGE }}
-          platforms: linux/amd64 # ,linux/arm64,linux/386
+          platforms: ${{ matrix.platforms }}
