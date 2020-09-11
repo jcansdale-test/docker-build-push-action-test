@@ -11,7 +11,7 @@ jobs:
         pre-push: ['true', 'false']
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ strategy.job-index }}-${{ github.sha }}
+      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ github.sha }}-${{ strategy.job-index }}
     steps:
       -
         name: Checkout
