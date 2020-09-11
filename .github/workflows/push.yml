@@ -37,7 +37,7 @@ jobs:
           docker push ${{ env.IMAGE }}:pre-push
         if: matrix.pre-push == 'true'
       -
-        run: echo "FROM node" > Dockerfile
+        run: echo "FROM --platform=$BUILDPLATFORM golang:alpine" > Dockerfile
       -
         name: Build and push
         uses: docker/build-push-action@v2
