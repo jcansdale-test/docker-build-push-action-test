@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        registry: [ghcr.io, docker.pkg.github.com]
+        registry: [ghcr.io]
     runs-on: ubuntu-latest
     env:
       IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ github.sha }}:latest
