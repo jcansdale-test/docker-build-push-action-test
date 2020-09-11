@@ -33,7 +33,7 @@ jobs:
         run: echo "FROM alpine" > Dockerfile
       -
         name: Pre-publish using docker push
-        if: matrix.registry == 'ghcr.io'
+        if: matrix.registry != 'ghcr.io'
         run: docker push ${{ env.IMAGE }}        
       -
         name: Build and push
