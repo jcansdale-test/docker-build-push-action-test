@@ -3,7 +3,7 @@ on:
     branches: master
 
 jobs:
-  docker-build-push-action:
+  push:
     strategy:
       fail-fast: false
       matrix:
@@ -28,7 +28,7 @@ jobs:
         with:
           registry: ${{ matrix.registry }}
           username: token
-          password: ${{ secrets.PACKAGES_TOKEN }}
+          password: ${{ secrets.CR_PAT }}
       -
         run: echo "FROM alpine" > Dockerfile
       -
