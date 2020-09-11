@@ -34,6 +34,7 @@ jobs:
       -
         name: Pre-publish using docker push
         run: docker push ${{ env.IMAGE }}        
+        if: matrix.pre-push == 'true'
       -
         name: Build and push
         uses: docker/build-push-action@v2
