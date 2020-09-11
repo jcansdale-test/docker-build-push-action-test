@@ -30,13 +30,14 @@ jobs:
           username: token
           password: ${{ secrets.CR_PAT }}
       -
-        run: echo "FROM alpine" > Dockerfile
-      -
         name: Pre-publish using docker push
         run: |
-          docker build . -t ${{ env.IMAGE }}:pre-push
+          docker pull alpine
+          docker tag alpine ${{ env.IMAGE }}:pre-push
           docker push ${{ env.IMAGE }}:pre-push
         if: matrix.pre-push == 'true'
+      -
+        run: echo "FROM node" > Dockerfile
       -
         name: Build and push
         uses: docker/build-push-action@v2
