@@ -8,7 +8,7 @@ jobs:
       fail-fast: false
       matrix:
         registry: [ghcr.io]
-        pre-push: [true, false]
+        pre-push: ['true', 'false']
     runs-on: ubuntu-latest
     env:
       IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}/${{ github.sha }}:latest
@@ -34,7 +34,7 @@ jobs:
       -
         name: Pre-publish using docker push
         if: matrix.pre-push == 'true'
-        run: docker push ${{ env.IMAGE }}
+        run: docker push ${{ env.IMAGE }}        
       -
         name: Build and push
         uses: docker/build-push-action@v2
