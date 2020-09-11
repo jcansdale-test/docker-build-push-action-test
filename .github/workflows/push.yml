@@ -11,7 +11,7 @@ jobs:
         pre-push: ['true', 'false']
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}/${{ github.sha }}:latest
+      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}-${{ github.sha }}:latest
     steps:
       -
         name: Checkout
@@ -33,7 +33,9 @@ jobs:
         run: echo "FROM alpine" > Dockerfile
       -
         name: Pre-publish using docker push
-        run: docker push ${{ env.IMAGE }}        
+        run: |
+          docker build . -t ${{ env.IMAGE }} 
+          docker push ${{ env.IMAGE }}        
         if: matrix.pre-push == 'true'
       -
         name: Build and push
