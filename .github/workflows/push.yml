@@ -11,7 +11,7 @@ jobs:
         pre-push: ['true', 'false']
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}-${{ github.sha }}:latest
+      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}-${{ github.sha }}
     steps:
       -
         name: Checkout
@@ -34,8 +34,8 @@ jobs:
       -
         name: Pre-publish using docker push
         run: |
-          docker build . -t ${{ env.IMAGE }} 
-          docker push ${{ env.IMAGE }}        
+          docker build . -t ${{ env.IMAGE }}:pre-push
+          docker push ${{ env.IMAGE }}:pre-push
         if: matrix.pre-push == 'true'
       -
         name: Build and push
