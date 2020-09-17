@@ -12,7 +12,7 @@ jobs:
         tag: [latest, edge]
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}-${{ github.sha }}
+      IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}-${{ matrix.tag }}-${{ github.sha }}
     steps:
       -
         name: Checkout
