@@ -9,6 +9,7 @@ jobs:
       matrix:
         registry: [ghcr.io]
         pre-push: ['true', 'false']
+        tag: [latest, edge]
     runs-on: ubuntu-latest
     env:
       IMAGE: ${{ matrix.registry }}/${{ github.repository }}/${{ matrix.pre-push }}-${{ github.sha }}
@@ -45,4 +46,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ env.IMAGE }}
+          tags: ${{ env.IMAGE }}:${{ matrix.tag }}
